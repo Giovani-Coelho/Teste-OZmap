@@ -8,7 +8,7 @@
 //https://www.chaijs.com/plugins/chai-json-schema/
 //https://developer.mozilla.org/pt-PT/docs/Web/HTTP/Status (http codes)
 
-const app =  require('../src/index.js');
+const app =  require('../src/server.js');
 
 const assert = require('assert');
 const chai = require('chai')
@@ -43,7 +43,7 @@ const userSchema = {
 
 //este teste é simplesmente pra enteder a usar o mocha/chai
 describe('Um simples conjunto de testes', function () {
-    it('deveria retornar -1 quando o valor não esta presente', function () {
+    it('deveria retornar -1 quando o valor não esta presente', () => {
         assert.equal([1, 2, 3].indexOf(4), -1);
     });
 });
@@ -74,10 +74,31 @@ describe('Testes da aplicaçao',  () => {
     it('deveria criar o usuario raupp', function (done) {
         chai.request(app)
         .post('/user')
-        .send({nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35})
+        .send(
+            {nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35},
+            {nome: "Matheus", email: "Matheus.raupp@devoz.com.br", idade: 24}, 
+            {nome: "Giovani", email: "Giovani.raupp@devoz.com.br", idade: 18}, 
+            {nome: "Paulo", email: "Paulo.raupp@devoz.com.br", idade: 55}, 
+            {nome: "Julia", email: "Julia.raupp@devoz.com.br", idade: 65}, 
+            {nome: "Guilherme", email: "guilherme.raupp@devoz.com.br", idade: 27},            
+        )
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(201);
+            done();
+        });
+    });
+
+    it('nao deve ser menor de 18 anos', function (done) {
+        chai.request(app)
+        .post('/user')
+        .send(
+            {nome: "Paulo", email: "paulo.raupp@devoz.com.br", idade: 11},
+            {nome: "Giovani", email: "giovani.raupp@devoz.com.br", idade: 13},
+        )
+        .end(function (err, res) {
+            expect(res.body.error).to.be.equal("Usuario menor de idade");
+            expect(res.status).to.be.equal(400)
             done();
         });
     });
