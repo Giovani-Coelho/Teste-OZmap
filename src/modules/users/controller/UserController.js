@@ -1,5 +1,6 @@
 const users = []
 
+// criar um novo usuario
 const createUser = async (ctx) => {
     const { name, email, idade } = ctx.request.body
 
@@ -12,8 +13,4 @@ const createUser = async (ctx) => {
     return ctx.response.status = 201
 }
 
-const listUser = async (ctx) => {
-  ctx.body = users
-}
-
-module.exports = {createUser, listUser}
+module.exports = {createUser}

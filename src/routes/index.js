@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
-const { createUser, listUser } = require('../modules/users/controller/UserController');
+const { createUser } = require('../modules/users/controller/UserController');
 
 const PORT = process.env.PORT || 3000;
 
