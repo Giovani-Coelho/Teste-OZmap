@@ -75,12 +75,12 @@ describe('Testes da aplicaçao',  () => {
         chai.request(app)
         .post('/user')
         .send(
-            {nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35},
-            {nome: "Matheus", email: "Matheus.raupp@devoz.com.br", idade: 24}, 
-            {nome: "Giovani", email: "Giovani.raupp@devoz.com.br", idade: 18}, 
-            {nome: "Paulo", email: "Paulo.raupp@devoz.com.br", idade: 55}, 
-            {nome: "Julia", email: "Julia.raupp@devoz.com.br", idade: 65}, 
-            {nome: "Guilherme", email: "guilherme.raupp@devoz.com.br", idade: 27},            
+            { nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35 },
+            { nome: "Matheus", email: "Matheus.raupp@devoz.com.br", idade: 24 }, 
+            { nome: "Giovani", email: "Giovani.raupp@devoz.com.br", idade: 18 }, 
+            { nome: "Paulo", email: "Paulo.raupp@devoz.com.br", idade: 55 }, 
+            { nome: "Julia", email: "Julia.raupp@devoz.com.br", idade: 65 }, 
+            { nome: "Guilherme", email: "guilherme.raupp@devoz.com.br", idade: 27 },            
         )
         .end(function (err, res) {
             expect(err).to.be.null;
@@ -93,8 +93,8 @@ describe('Testes da aplicaçao',  () => {
         chai.request(app)
         .post('/user')
         .send(
-            {nome: "Paulo", email: "paulo.raupp@devoz.com.br", idade: 11},
-            {nome: "Giovani", email: "giovani.raupp@devoz.com.br", idade: 13},
+            { nome: "Paulo", email: "paulo.raupp@devoz.com.br", idade: 11 },
+            { nome: "Giovani", email: "giovani.raupp@devoz.com.br", idade: 13 },
         )
         .end(function (err, res) {
             expect(res.body.error).to.be.equal("Usuario menor de idade");
@@ -106,11 +106,11 @@ describe('Testes da aplicaçao',  () => {
 
     it('o usuario naoExiste não existe no sistema', function (done) {
         chai.request(app)
-        .get('/user/naoExiste')
+        .get('/user/naoExiste') 
         .end(function (err, res) {
-            expect(err.response.body.error).to.be.equal('User not found'); //possivelmente forma errada de verificar a mensagem de erro
-            expect(res).to.have.status(404);
-            expect(res.body).to.be.jsonSchema(userSchema);
+            expect(res.body.error).to.be.equal('User not found'); //possivelmente forma errada de verificar a mensagem de erro
+            expect(res.status).to.be.equal(404);
+            expect(res.body).to.not.be.jsonSchema(userSchema);
             done();
         });
     });

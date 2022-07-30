@@ -15,7 +15,7 @@ const json = require("koa-json")
 
 const app = new Koa();
 
-const router = require("./routes/index")
+const router = require("./routes/index.routes")
 
 app.use(bodyParser())
 app.use(json())
@@ -23,7 +23,6 @@ app.use(json())
 app
   .use(router.routes())
   .use(router.allowedMethods());
-
 
 const server = app.listen(PORT, console.log("Server is Running!"));
 
