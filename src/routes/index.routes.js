@@ -1,7 +1,7 @@
-const Router = require('koa-router');
-const router = new Router();
-const { createUser, userNotExist } = require('../modules/users/controller/UserController');
+import Router from 'koa-router'
+import { createUser, userNotExist } from '../modules/users/controller/UserController.js'
 
+const router = new Router()
 const PORT = process.env.PORT || 3000;
 
 
@@ -20,5 +20,4 @@ router
   .get(`/user/:naoExiste`, userNotExist)
 
 
-module.exports = router
-
+export { router }

@@ -4,4 +4,4 @@ const getUser = (users, name) => {
   return userFind
 }
 
-module.exports = { getUser }
+export { getUser }

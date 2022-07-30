@@ -1,4 +1,4 @@
-const {getUser} = require("../repository/UserRepository")
+import { getUser } from "../repository/UserRepository.js"
 
 const users = []
 
@@ -35,4 +35,4 @@ const userNotExist = (ctx) => {
   return
 }
 
-module.exports = { createUser, userNotExist, users }
+export { createUser, userNotExist, users }
