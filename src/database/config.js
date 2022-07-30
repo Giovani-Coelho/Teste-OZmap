@@ -9,7 +9,7 @@ import { open } from 'sqlite'
 // este é um await de nível superior 
 async function openDb () {
   return open({
-    filename: 'database.db',
+    filename: './database.db',
     driver: sqlite3.Database
   })
 }
