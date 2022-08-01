@@ -75,12 +75,7 @@ describe('Testes da aplicaçao',  () => {
         chai.request(app)
         .post('/user')
         .send(
-            { nome: "raupp", email: "jose.raupp@devoz.com.br", idade: 35 },
-            { nome: "Matheus", email: "Matheus.raupp@devoz.com.br", idade: 24 }, 
-            { nome: "Giovani", email: "Giovani.raupp@devoz.com.br", idade: 18 }, 
-            { nome: "Paulo", email: "Paulo.raupp@devoz.com.br", idade: 55 }, 
-            { nome: "Julia", email: "Julia.raupp@devoz.com.br", idade: 65 }, 
-            { nome: "Guilherme", email: "guilherme.raupp@devoz.com.br", idade: 27 },            
+            { name: "raupp", email: "jose.raupp@devoz.com.br", idade: 35 },  
         )
         .end(function (err, res) {
             expect(err).to.be.null;

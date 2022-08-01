@@ -4,8 +4,15 @@ const userRepository = new UserRepository()
 
 class UserController {
 
-  newUser(ctx) {
+  async newUser(ctx) {
     const { name, email, idade } = ctx.request.body
+    const emailAlreadyExists = await userRepository.getUserByEmail(email)
+
+    if (emailAlreadyExists) {
+      ctx.body = { error: "User Already Exists"}
+      ctx.response.status = 400
+      return
+    }
 
     if (idade < 18) {
       ctx.body = { error: "Usuario menor de idade"}
@@ -13,9 +20,13 @@ class UserController {
       return 
     }
 
-    userRepository.create({name, email, idade})
+    await userRepository.create({name, email, idade})
 
     return ctx.response.status = 201
+  }
+
+  async userNaoExiste() {
+
   }
 
 }

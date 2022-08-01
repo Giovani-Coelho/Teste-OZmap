@@ -8,6 +8,12 @@ class UserRepository {
     return await knex('users').insert(user)
   }
 
+  async getUserByEmail(email) {
+    return await knex('users')
+    .select('email')
+    .where({ email: email })
+    .first()
+  }
 }
 
 module.exports = UserRepository
