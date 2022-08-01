@@ -7,13 +7,19 @@ class UserRepository {
     return await knex('users').insert(user)
   }
 
-  async justOneUser(user) {
+  async getOnlyOneUser(user) {
     return await knex('users')
     .select('*')
     .where({name: user})
     .orWhere({email: user})
     .orWhere({idade: user})
     .first()
+  }
+
+  async deleteUser(user) {
+    return await knex('users')
+    .where({ name: user.name })
+    .del()
   }
 }
 

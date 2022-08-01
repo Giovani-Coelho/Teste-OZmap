@@ -20,5 +20,6 @@ router
 
   .get(`/user/:user`, userController.getUser)
 
+  .delete('/user/:name', userController.removeUser)
 
 module.exports = router 
