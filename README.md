@@ -24,7 +24,7 @@ Esse projeto é uma API para a criar, deletar e buscar usuários.
 
 ## 🚀 Tecnologias
 
-Principais tecnologias usadas para desenvolver está API:
+Principais tecnologias usadas para desenvolver esta API:
 
 
 - [Node.js](https://nodejs.org/en/)
@@ -45,11 +45,11 @@ npx knex migrate:latest
 npx knex migrate:rollback
 ```
 
-Execute o Projeto
+Execute o Projeto:
 ```sh
 node ./src/server.js
 
-# caso tenho o nodemon instalado globalmente:
+# caso tenha o nodemon instalado globalmente:
 
 nodemon ./src/server.js
 ```
