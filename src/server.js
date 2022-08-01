@@ -6,24 +6,25 @@
 
 // todas as configuraçoes devem ser passadas via environment variables
 
-import dotenv from "dotenv"
+const dotenv = require("dotenv") 
 dotenv.config()
 const PORT = process.env.PORT ;
 
-import {openDb}  from "./database/config.js"
-import Koa from 'koa'
-import bodyParser from "koa-bodyparser"
-import json from "koa-json"
-import { router } from "./routes/index.routes.js"
+const Koa = require('koa')
+const bodyParser = require( "koa-bodyparser")
+const json = require("koa-json")
+const router = require("./routes/index.routes.js") 
 
 const app = new Koa()
 
-openDb()
 app.use(bodyParser())
 app.use(json())
+
 
 app
   .use(router.routes())
   .use(router.allowedMethods())
 
-export default app.listen(PORT, console.log("Server is Running!"))
+const server = app.listen(PORT, console.log("Server is Running!"))
+ 
+module.exports = server

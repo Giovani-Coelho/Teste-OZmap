@@ -8,12 +8,12 @@
 //https://www.chaijs.com/plugins/chai-json-schema/
 //https://developer.mozilla.org/pt-PT/docs/Web/HTTP/Status (http codes)
 
-import app from '../src/server.js'
+const app = require('../src/server.js') 
 
-import assert from 'assert'
-import chai from 'chai'
-import chaiHttp from 'chai-http'
-import chaiJson from 'chai-json-schema'
+const assert = require('assert')
+const chai = require('chai') 
+const chaiHttp = require('chai-http')
+const chaiJson = require('chai-json-schema') 
 
 chai.use(chaiHttp);
 chai.use(chaiJson);
@@ -93,7 +93,6 @@ describe('Testes da aplicaçao',  () => {
         chai.request(app)
         .post('/user')
         .send(
-            { nome: "Paulo", email: "paulo.raupp@devoz.com.br", idade: 11 },
             { nome: "Giovani", email: "giovani.raupp@devoz.com.br", idade: 13 },
         )
         .end(function (err, res) {

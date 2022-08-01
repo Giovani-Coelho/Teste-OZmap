@@ -1,9 +1,10 @@
-import Router from 'koa-router'
-import { createUser, userNotExist } from '../modules/users/controller/UserController.js'
+const Router = require('koa-router'); 
 
 const router = new Router()
 const PORT = process.env.PORT || 3000;
 
+const UserController = require('../module/controller/UserController')
+const userController = new UserController()
 
 router
   .get('/', async ctx => {
@@ -14,10 +15,10 @@ router
     ctx.status = 200;
     ctx.body = {total:0, count: 0, rows:[]}
   })
-  
-  .post("/user", createUser)
 
-  .get(`/user/:naoExiste`, userNotExist)
+  .post("/user", userController.newUser)
+
+  .get(`/user/:naoExiste`)
 
 
-export { router }
+module.exports = router 
