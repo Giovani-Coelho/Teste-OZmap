@@ -40,7 +40,6 @@ const userSchema = {
 }
 
 //Inicio dos testes
-
 //este teste é simplesmente pra enteder a usar o mocha/chai
 describe('Um simples conjunto de testes', function () {
     it('deveria retornar -1 quando o valor não esta presente', () => {
@@ -84,7 +83,7 @@ describe('Testes da aplicaçao',  () => {
         });
     });
 
-//------------------------------ USERS ---------------------------------------------------
+//------------------------------ USERS -------------------------------------------------------
     
     it('user-1', function (done) {
         chai.request(app)
