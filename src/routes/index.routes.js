@@ -18,7 +18,7 @@ router
 
   .post("/user", userController.newUser)
 
-  .get(`/user/:naoExiste`)
+  .get(`/user/:user`, userController.getUser)
 
 
 module.exports = router 

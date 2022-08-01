@@ -6,7 +6,7 @@ class UserController {
 
   async newUser(ctx) {
     const { name, email, idade } = ctx.request.body
-    const emailAlreadyExists = await userRepository.getUserByEmail(email)
+    const emailAlreadyExists = await userRepository.justOneUser(email)
 
     if (emailAlreadyExists) {
       ctx.body = { error: "User Already Exists"}
@@ -25,10 +25,20 @@ class UserController {
     return ctx.response.status = 201
   }
 
-  async userNaoExiste() {
+  async getUser(ctx) {
+    const user = ctx.params.user
+    const userExist = await userRepository.justOneUser(user)
+    
+    if (!userExist) {
+      ctx.response.body = { error: 'User not found'}
+      ctx.status = 404
+      return
+    }
 
+    ctx.response.body = userExist
+    ctx.status = 200
+    return
   }
-
 }
 
 module.exports = UserController
