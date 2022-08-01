@@ -25,6 +25,14 @@ class UserController {
     return ctx.response.status = 201
   }
 
+  async getAllUsers(ctx) {
+    const user = await userRepository.allUsers()
+
+    ctx.body = { total: user.length, count: 0, rows:user }
+    ctx.status = 200
+    return
+  }
+
   async getUser(ctx) {
     const user = ctx.params.user
     const userExist = await userRepository.getOnlyOneUser(user)
@@ -51,6 +59,13 @@ class UserController {
     }
 
     await userRepository.deleteUser(getUser)
+
+    ctx.status = 200
+    return
+  }
+
+  async removeAll(ctx) {
+    await userRepository.deletAllUsers()
 
     ctx.status = 200
     return

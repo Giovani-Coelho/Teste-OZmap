@@ -7,6 +7,10 @@ class UserRepository {
     return await knex('users').insert(user)
   }
 
+  async allUsers() {
+    return await knex('users')
+  }
+
   async getOnlyOneUser(user) {
     return await knex('users')
     .select('*')
@@ -19,6 +23,11 @@ class UserRepository {
   async deleteUser(user) {
     return await knex('users')
     .where({ name: user.name })
+    .del()
+  }
+
+  async deletAllUsers() {
+    return await knex('users')
     .del()
   }
 }

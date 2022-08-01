@@ -84,6 +84,77 @@ describe('Testes da aplicaçao',  () => {
         });
     });
 
+//------------------------------ USERS ---------------------------------------------------
+    
+    it('user-1', function (done) {
+        chai.request(app)
+        .post('/user')
+        .send(
+            { name: "Paulo", email: "paulo@devoz.com.br", idade: 35 }
+        )
+        .end(function (err, res) {
+            expect(err).to.be.null;
+            expect(res).to.have.status(201);
+            done();
+        });
+    });
+
+    it('user-2', function (done) {
+        chai.request(app)
+        .post('/user')
+        .send(
+            { name: "Giovani", email: "giovani@devoz.com.br", idade: 29 }
+        )
+        .end(function (err, res) {
+            expect(err).to.be.null;
+            expect(res).to.have.status(201);
+            done();
+        });
+    });
+
+    it('user-3', function (done) {
+        chai.request(app)
+        .post('/user')
+        .send(
+            { name: "Matheus", email: "matheus@devoz.com.br", idade: 41 }
+        )
+        .end(function (err, res) {
+            expect(err).to.be.null;
+            expect(res).to.have.status(201);
+            done();
+        });
+    });
+
+
+    it('user-4', function (done) {
+        chai.request(app)
+        .post('/user')
+        .send(
+            { name: "Julia", email: "julia@devoz.com.br", idade: 22 }
+        )
+        .end(function (err, res) {
+            expect(err).to.be.null;
+            expect(res).to.have.status(201);
+            done();
+        });
+    });
+
+    it('user-5', function (done) {
+        chai.request(app)
+        .post('/user')
+        .send(
+            { name: "Pedro", email: "pedro@devoz.com.br", idade: 19 }
+        )
+        .end(function (err, res) {
+            expect(err).to.be.null;
+            expect(res).to.have.status(201);
+            done();
+        });
+    });
+
+//------------------------------ End Users ---------------------------------------------------
+
+
     it('nao deve ser menor de 18 anos', function (done) {
         chai.request(app)
         .post('/user')
@@ -126,7 +197,7 @@ describe('Testes da aplicaçao',  () => {
         .end(function (err, res) {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
-            expect(res.body).to.be.jsonSchema(userSchema);
+            expect(res.body).to.not.be.jsonSchema(userSchema);
             done();
         });
     });
@@ -136,8 +207,8 @@ describe('Testes da aplicaçao',  () => {
         .get('/user/raupp')
         .end(function (err, res) {
             expect(err).to.be.null;
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.jsonSchema(userSchema);
+            expect(res).to.have.status(404);
+            expect(res.body).to.not.be.jsonSchema(userSchema);
             done();
         });
     });
