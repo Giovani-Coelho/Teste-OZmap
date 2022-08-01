@@ -8,18 +8,24 @@
 
 const dotenv = require("dotenv") 
 dotenv.config()
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT || 3000 ;
 
 const Koa = require('koa')
+
+const swagger = require("swagger2");
+const { ui} = require("swagger2-koa");
+const swaggerDocument = swagger.loadDocumentSync("./api.yaml");
+
 const bodyParser = require( "koa-bodyparser")
 const json = require("koa-json")
 const router = require("./routes/index.routes.js") 
 
 const app = new Koa()
 
-app.use(bodyParser())
-app.use(json())
-
+app
+  .use(ui(swaggerDocument, '/swagger'))
+  .use(bodyParser())
+  .use(json())
 
 app
   .use(router.routes())

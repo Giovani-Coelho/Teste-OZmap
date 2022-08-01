@@ -1,0 +1,160 @@
+openapi: 3.0.0
+info:
+  title: OZmap Test API
+  description: API documentation for OZmap technical test.
+  version: 1.0.0
+  contact:
+    name: Giovani Coelho
+    email: giovanicoelho2004@hotmail.com
+    url: https://github.com/Giovani-Coelho
+
+servers:
+  - url: http://localhost:3000
+    description: API test server
+
+paths:
+  /users:
+    get:
+        tags: 
+          - Users
+        summary: Get a user by name
+        responses:
+          '200':
+            description: ok
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  properties:
+                    total: 
+                      type: integer
+                    count: 
+                      type: integer
+                    rows:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        age:
+                          type: integer
+                        email:
+                          type: string
+    
+          '400':
+            description: Bad Request, could't fetch users!
+
+
+
+  /user:
+    post:
+      tags:
+        - Users
+      summary: Create a new user in the database
+      description: This route creates a new user in database
+      requestBody:
+        content:
+          aplication/json:
+            schema: 
+              type: object
+              properties: 
+                name: 
+                  type: "Giovani"
+                email: 
+                  type: giovanicoelho2004@hotmail.com
+                idade: 
+                  type: 18
+      responses: 
+        "201":  
+          content:
+            aplication/json:
+              schema: 
+                type: object
+                properties: 
+                  name: 
+                    type: string
+                  email: 
+                    type: string
+                  idade: 
+                    type: number
+          description: Created
+        "400":
+          description: Bad Request!
+
+
+
+  /users/{name}:
+    get:
+      tags: 
+        - Users
+      summary: Get a user by name
+      parameters:
+        - in: path
+          name: name
+          schema:
+            name: 
+              type: string
+          required: true
+          description: Enter the name to search for the user
+      responses:
+        '200':
+          description: returns the user. OK
+          content:
+            aplication/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  age:
+                    type: integer
+                  email:
+                    type: string
+        '404':
+          description: Bad Request, could't fetch users!
+
+  /user/{name}:
+    delete:
+      tags: 
+        - Users
+      summary: Delete a user by name
+      parameters:
+        - in: path
+          name: name
+          schema:
+            name: 
+              type: string
+          required: true
+          description: Enter the name to search for the user and delete
+      responses:
+        '200':
+          description: The user has been deleted
+          content:              
+        '404':
+          description: Bad Request, could't fetch users!
+
+components:
+  requestBodies:
+    User:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/user'
+  schemas:
+    user:
+      type: object
+      properties:
+        name:
+          type: string
+        age: 
+          type: integer
+        email:
+          type: string
+      required:
+        - name
+        - age
+        - email
+                
+                
+                
+                
+                
