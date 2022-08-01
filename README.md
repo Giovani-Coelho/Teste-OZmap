@@ -36,6 +36,12 @@ Principais tecnologias usadas para desenvolver esta API:
 
 ## ⚙ Rodando o Projeto
 
+instale as dependências:
+
+```sh
+npm install
+```
+
 Rode a migration:
 ```sh
 npx knex migrate:latest
@@ -58,3 +64,7 @@ Executar os testes:
 ```sh
 npm run test
 ```
+
+Documentacão:
+
+- localhost:3000/swagger
