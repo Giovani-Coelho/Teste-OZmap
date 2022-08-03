@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000 ;
 const Koa = require('koa')
 
 const swagger = require("swagger2");
-const { ui} = require("swagger2-koa");
+const { ui } = require("swagger2-koa");
 const swaggerDocument = swagger.loadDocumentSync("./api.yaml");
 
 const bodyParser = require( "koa-bodyparser")
